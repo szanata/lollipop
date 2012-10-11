@@ -1,0 +1,36 @@
+﻿/**
+* Default Lollipop style
+*/
+#lollipop-popup{
+  border:8px solid #666;
+  border-radius:6px;
+  font-family:arial;
+  color:#333;
+  background-color:#fcfcfc;
+}
+#lollipop-popup-header{
+  background-color:#f2f2f2;
+  padding:10px;
+  border-bottom:1px solid #ccc;
+  text-shadow:0px 1px #fff;
+}
+#lollipop-popup-body{
+  padding:10px 10px 50px;
+}
+#lollipop-popup-footer{
+  text-align:center;
+  border-top:1px solid #ccc;
+  background-color:#f2f2f2;
+  padding:10px;
+}
+#lollipop-popup-footer button{
+  border:1px solid #999;
+  background-color:#ddd;
+  padding:8px 15px;
+  border-radius:4px;
+  color:#333;
+  text-shadow:0px 1px #efefef;
+  box-shadow:inset 0px 10px 10px #eee, inset 0px -10px 10px #ccc,0px 1px 2px #ccc;
+  cursor:pointer;
+}
+#lollipop-popup-footer button:not(:first-child){margin-left:10px;}
