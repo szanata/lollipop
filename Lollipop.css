@@ -1,6 +1,9 @@
 ﻿/**
 * Default Lollipop style
 */
+#lollipop-block-layer{
+  background-color:rgba(0,0,0,.7);
+}
 #lollipop-popup{
   border:8px solid #666;
   border-radius:6px;

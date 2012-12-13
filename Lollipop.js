@@ -73,14 +73,12 @@ var Lollipop = window.Lollipop = {};
       right:'0px',
       zIndex:9999
     }).append(
-      $('<div></div>').css({ //blocker
+      $('<div id="lollipop-block-layer"></div>').css({ //blocker
         position:'absolute',
         top:'0px',
         bottom:'0px',
         left:'0px',
-        right:'0px',
-        opacity:'.8',
-        backgroundColor:'#000'
+        right:'0px'
       }),
       $('<div id="lollipop-popup"></div>').css({ //popup box itself
         maxWidth:defaults.maxWidth,
