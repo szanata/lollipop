@@ -317,7 +317,7 @@ var Lollipop = window.Lollipop = {};
     setFooter(openOptions);
     $popup.hide().appendTo($('body'));
     if (openOptions.animate){
-      $popup.css('visibility','hidden').show(function (){
+      $popup.css('visibility','hidden').show(0,function (){
         afterOpenAction();
         $popup.hide().css('visibility','visible').fadeIn(function (){
           if (typeof _options.onOpen === 'function'){
@@ -327,7 +327,7 @@ var Lollipop = window.Lollipop = {};
       });
       
     }else{
-      $popup.show(function (){
+      $popup.show(0,function (){
         afterOpenAction();
         if (typeof _options.onOpen === 'function'){
           _options.onOpen.call(this);
