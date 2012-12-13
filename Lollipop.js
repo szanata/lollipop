@@ -5,7 +5,7 @@
 * @license GPL <http://szanata.com/gpl.txt>
 * @author Stéfano Stypulkowski <http://szanata.me>
 * @hosted Github <http://github.com/madeinstefano/Lollipop>
-* @version 1.0.1
+* @version 1.0.2
 * @require jquery 1.8+
 * @compatible FF 3.5+
 * @compatible Google Chrome 3+
@@ -61,6 +61,7 @@ var Lollipop = window.Lollipop = {};
       cancelButtonTitle:'Cancel',
       onCancel:null,
       content:null,
+      onOpen:null,
       buttons:[]
     },
     workingOptions = cloneObj(defaults),
@@ -257,6 +258,18 @@ var Lollipop = window.Lollipop = {};
   }
   
   /**
+  * adds the cleaner div to prevent floating element to be out of bounds
+  */
+  function setCleaner(){
+    var cleaner = $('<div></div>').css({
+      clear:'both',
+      width:0,
+      height:0
+    });
+    $popup.find('#lollipop-popup-body').append(cleaner);
+  }
+  
+  /**
   * Add a pad equivalent to footers height to the popup box,
   * This is important since the foooter has absolute position
   */
@@ -300,15 +313,26 @@ var Lollipop = window.Lollipop = {};
     setSizes(openOptions);
     setHeader(openOptions);
     $popup.find('#lollipop-popup-body').html(openOptions.content);
+    setCleaner();
     setFooter(openOptions);
     $popup.hide().appendTo($('body'));
     if (openOptions.animate){
-      $popup.css('visibility','hidden').show();
-      afterOpenAction();
-      $popup.hide().css('visibility','visible').fadeIn();
+      $popup.css('visibility','hidden').show(function (){
+        afterOpenAction();
+        $popup.hide().css('visibility','visible').fadeIn(function (){
+          if (typeof _options.onOpen === 'function'){
+            _options.onOpen.call(this);
+          }
+        });
+      });
+      
     }else{
-      $popup.show();
-      afterOpenAction();
+      $popup.show(function (){
+        afterOpenAction();
+        if (typeof _options.onOpen === 'function'){
+          _options.onOpen.call(this);
+        }
+      });
     }
   }
   Lollipop['open'] = open;

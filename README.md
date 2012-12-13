@@ -5,6 +5,9 @@ A simple JS popup manager, but just *perfect*
 
 > Changelog
 
+- **1.0.2**
+  - added "onOpen" option
+
 - **1.0.1**
   - stylizable block layer (for background color and opacity)
 
@@ -57,6 +60,7 @@ A simple JS popup manager, but just *perfect*
   - title:<string> - Default tile for popup. Default: null.
   - showHeader:<boolean> - If the header bar must be visible. Default: true.
   - showFooter:<boolean> - If the footer bar must be visible. Default: true.
+  - onOpen:<function> - Some function to be evalued after the popup loads.
   - showCancelButton:<boolean> - If the close button must be visible. Default: true.
   - cancelButtonTitle:<boolean> - The close button label. Default: *Cancel*.
   - onCancel:<function> - The close button behavior before closing the popup. Default: *Cancel*. Note that if the close button is visible, ESC key can be used to close it, this also trigger the *onClose* event.
