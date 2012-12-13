@@ -3,6 +3,14 @@ Lollipop
 
 A simple JS popup manager, but just *perfect*
 
+> Changelog
+
+- **1.0.1**
+  - stylizable block layer (for background color and opacity)
+
+- **1.0.0**
+  - initial release, see features below
+
 > Featues
 
 - Auto centralizes
