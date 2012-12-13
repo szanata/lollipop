@@ -4,7 +4,8 @@
 * @license MIT <http://szanata.com/mit.txt>
 * @license GPL <http://szanata.com/gpl.txt>
 * @author Stéfano Stypulkowski <http://szanata.me>
-* @version 1.0
+* @hosted Github <http://github.com/madeinstefano/Lollipop>
+* @version 1.0.1
 * @require jquery 1.8+
 * @compatible FF 3.5+
 * @compatible Google Chrome 3+
