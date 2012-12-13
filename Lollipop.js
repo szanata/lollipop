@@ -5,7 +5,7 @@
 * @license GPL <http://szanata.com/gpl.txt>
 * @author Stéfano Stypulkowski <http://szanata.me>
 * @hosted Github <http://github.com/madeinstefano/Lollipop>
-* @version 1.0.2
+* @version 1.0.3
 * @require jquery 1.8+
 * @compatible FF 3.5+
 * @compatible Google Chrome 3+
@@ -343,10 +343,10 @@ var Lollipop = window.Lollipop = {};
   */
   function close(noAnimate){
     if (noAnimate){
-      $popup.remove();
+      $popup.detach();
     }else{
       $popup.fadeOut(function (){
-        $popup.remove();
+        $popup.detach();
       });
     }
     disableCloseOnESC();

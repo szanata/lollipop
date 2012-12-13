@@ -5,6 +5,9 @@ A simple JS popup manager, but just *perfect*
 
 > Changelog
 
+- **1.0.3**
+  - replace "remove" to "detach" jQuery method when closing the popup
+
 - **1.0.2**
   - added "onOpen" option
 
