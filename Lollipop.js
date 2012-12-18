@@ -312,7 +312,8 @@ var Lollipop = window.Lollipop = {};
     $.extend(openOptions, workingOptions,_options);
     setSizes(openOptions);
     setHeader(openOptions);
-    $popup.find('#lollipop-popup-body').html(openOptions.content);
+    $popup.find('#lollipop-popup-body').html('');
+    $popup.find('#lollipop-popup-body').append(openOptions.content);
     setCleaner();
     setFooter(openOptions);
     $popup.hide().appendTo($('body'));
@@ -343,9 +344,11 @@ var Lollipop = window.Lollipop = {};
   */
   function close(noAnimate){
     if (noAnimate){
+      $popup.find('#lollipop-popup-body').html('');
       $popup.detach();
     }else{
       $popup.fadeOut(function (){
+        $popup.find('#lollipop-popup-body').html('');
         $popup.detach();
       });
     }

@@ -5,6 +5,11 @@ A simple JS popup manager, but just *perfect*
 
 > Changelog
 
+- **1.0.4**
+  - explicit removing popup's content before closing the popup
+  - explicit removing popup's content before loading new content on popup
+  - using "append" to new content on popup
+
 - **1.0.3**
   - replace "remove" to "detach" jQuery method when closing the popup
 
