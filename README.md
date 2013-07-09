@@ -5,6 +5,10 @@ A simple JS popup manager, but just *perfect*
 
 > Changelog
 
+- **1.0.5**
+  - added: "onClose" callback, called after popup closes
+  - added: "onBeforeClose" calback, called before popup closes
+
 - **1.0.4**
   - explicit removing popup's content before closing the popup
   - explicit removing popup's content before loading new content on popup
@@ -29,10 +33,11 @@ A simple JS popup manager, but just *perfect*
 - Always visible
 - Screen blocker
 - Prevents scroll
+- Keyborad ESC to close popup
 - 3 areas: header (for title), body (for content) and footer (for buttons).
 - Easy to styling
 
-> Intalling
+> Installing
 
 - Download and import the Lollipop.js or the minified file to your project
 - You also need to use jQuery 1.8+ on your project
@@ -69,6 +74,8 @@ A simple JS popup manager, but just *perfect*
   - showHeader:<boolean> - If the header bar must be visible. Default: true.
   - showFooter:<boolean> - If the footer bar must be visible. Default: true.
   - onOpen:<function> - Some function to be evalued after the popup loads.
+  - onClose:<function> - Some function to be evalued after the popup closes.
+  - onBeforeClose:<function> - Some function to be evalued before the popup closes.
   - showCancelButton:<boolean> - If the close button must be visible. Default: true.
   - cancelButtonTitle:<boolean> - The close button label. Default: *Cancel*.
   - onCancel:<function> - The close button behavior before closing the popup. Default: *Cancel*. Note that if the close button is visible, ESC key can be used to close it, this also trigger the *onClose* event.

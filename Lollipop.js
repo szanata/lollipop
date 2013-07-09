@@ -61,7 +61,9 @@ var Lollipop = window.Lollipop = {};
       cancelButtonTitle:'Cancel',
       onCancel:null,
       content:null,
+      onBeforeOpen:null,
       onOpen:null,
+      onClose:null,
       buttons:[]
     },
     workingOptions = cloneObj(defaults),
@@ -314,9 +316,13 @@ var Lollipop = window.Lollipop = {};
     setHeader(openOptions);
     $popup.find('#lollipop-popup-body').html('');
     $popup.find('#lollipop-popup-body').append(openOptions.content);
+    $popup.data('__closeCallback',openOptions.onClose);
     setCleaner();
     setFooter(openOptions);
     $popup.hide().appendTo($('body'));
+    if (typeof _options.onBeforeOpen === 'function'){
+      _options.onBeforeOpen.call($popup[0]);
+    }
     if (openOptions.animate){
       $popup.css('visibility','hidden').show(0,function (){
         afterOpenAction();
@@ -351,6 +357,10 @@ var Lollipop = window.Lollipop = {};
         $popup.find('#lollipop-popup-body').html('');
         $popup.detach();
       });
+    }
+    var closeCallback = $popup.data('__closeCallback');
+    if (typeof closeCallback === 'function'){
+      closeCallback.call($popup[0]);
     }
     disableCloseOnESC();
     disableWindowResizeBehavior();
