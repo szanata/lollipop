@@ -218,11 +218,11 @@ var Lollipop = window.Lollipop = {};
       $popup.find('#lollipop-popup-footer').empty().show();
       if (_options.buttons){
         for (var i = 0, li = _options.buttons.length; i < li; i++){
-          setButton(_options.buttons[i].title,_options.buttons[i].click)
+          setButton(_options.buttons[i].title, _options.buttons[i].click);
         }
       }
       if (_options.showCancelButton){
-        setButton(_options.cancelButtonTitle,function (){
+        setButton(_options.cancelButtonTitle, function (){
           if (typeof _options.onCancel === 'function'){
             _options.onCancel();
           }
@@ -312,11 +312,11 @@ var Lollipop = window.Lollipop = {};
   function open(_options){
     var openOptions = {};
     $.extend(openOptions, workingOptions,_options);
-    setSizes(openOptions);
     setHeader(openOptions);
     $popup.find('#lollipop-popup-body').html('');
     $popup.find('#lollipop-popup-body').append(openOptions.content);
     $popup.data('__closeCallback',openOptions.onClose);
+    setSizes(openOptions);
     setCleaner();
     setFooter(openOptions);
     $popup.hide().appendTo($('body'));
