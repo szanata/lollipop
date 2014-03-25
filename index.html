@@ -7,7 +7,7 @@
     
     <link type="text/css" rel="stylesheet" href="Lollipop.css"/>
     
-    <script src="jquery-1.8.2.min.js"></script>
+    <script src="jquery-2.0.3.min.js"></script>
     <script src="Lollipop.js"></script>
 	</head>
 	<body style="height:1900px">
@@ -18,12 +18,22 @@
           title:'My title',
           content:'Hellow',
           animate:false,
-          buttons:[{
-            title:'Ok',
-            click:function (){
-              Lollipop.close();
+          buttons:[
+            {
+              title:'Ok',
+              click:function (){
+                Lollipop.close();
+              }
+            },
+            {
+              title:'link',                
+              href:'http://github.com',
+              target:'_blank',
+              click:function (){
+                console.log('click event');
+              }
             }
-          }],
+          ],
           onOpen:null
         });
       });

@@ -131,7 +131,7 @@ var Lollipop = window.Lollipop = {};
   
   /**
   * centralizes the popup relative to window
-  * if popup bigger than x or y, it goes to position zero on that axis
+  * if popup is bigger than x or y, it goes to position zero on that axis
   */
   function centralize(){
     var
@@ -182,8 +182,17 @@ var Lollipop = window.Lollipop = {};
   /**
   * creates and appends some button to footer*
   */
-  function setButton(title,clickFn){
-    $popup.find('#lollipop-popup-footer').append($('<button></button>').text(title).on('click',clickFn));
+  function setButton(options){
+    $popup.find('#lollipop-popup-footer').append(
+      options.href 
+        ? $('<a class="button"></a>').text(options.title)
+          .attr({
+            'href': options.href,
+            'target': options.target ? options.target : '_blank'
+          })
+          .on('click', options.click)
+        : $('<button></button>').text(options.title).on('click', options.click)
+    );
   }
   
   /**
@@ -218,15 +227,18 @@ var Lollipop = window.Lollipop = {};
       $popup.find('#lollipop-popup-footer').empty().show();
       if (_options.buttons){
         for (var i = 0, li = _options.buttons.length; i < li; i++){
-          setButton(_options.buttons[i].title, _options.buttons[i].click);
+          setButton(_options.buttons[i]);
         }
       }
       if (_options.showCancelButton){
-        setButton(_options.cancelButtonTitle, function (){
-          if (typeof _options.onCancel === 'function'){
-            _options.onCancel();
+        setButton({
+          title: _options.cancelButtonTitle, 
+          click:  function (){
+            if (typeof _options.onCancel === 'function'){
+              _options.onCancel();
+            }
+            Lollipop.close();
           }
-          Lollipop.close();
         });
         setCloseOnESC(_options);
       }
