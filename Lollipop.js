@@ -5,7 +5,7 @@
 * @license GPL <http://szanata.com/gpl.txt>
 * @author Stéfano Stypulkowski <http://szanata.me>
 * @hosted Github <http://github.com/madeinstefano/Lollipop>
-* @version 1.0.3
+* @version 1.1.0
 * @require jquery 1.8+
 * @compatible FF 3.5+
 * @compatible Google Chrome 3+
@@ -13,8 +13,6 @@
 * @compatible Opera 10+
 * @compatible Safari 5+
 */
-var Lollipop = window.Lollipop = {};
-
 (function (){
   'use strict';
   
@@ -46,6 +44,7 @@ var Lollipop = window.Lollipop = {};
   }
   
   var   
+    methods = {},
     defaults = {
       minWidth:400,
       maxWidth:500,
@@ -306,7 +305,7 @@ var Lollipop = window.Lollipop = {};
   function seeDefaults(){
     return cloneObj(defaults);
   }
-  Lollipop['seeDefaults'] = seeDefaults;
+  methods.seeDefaults = seeDefaults;
   
   /**
   * @public
@@ -315,7 +314,7 @@ var Lollipop = window.Lollipop = {};
   function config(_options){
     $.extend(workingOptions,defaults,_options);
   }
-  Lollipop['config'] = config;
+  methods.config = config;
   
   /**
   * @public
@@ -345,7 +344,7 @@ var Lollipop = window.Lollipop = {};
         });
       });
       
-    }else{
+    } else {
       $popup.show(0,function (){
         afterOpenAction();
         if (typeof _options.onOpen === 'function'){
@@ -354,7 +353,7 @@ var Lollipop = window.Lollipop = {};
       });
     }
   }
-  Lollipop['open'] = open;
+  methods.open = open;
   
   /**
   * @public
@@ -378,7 +377,16 @@ var Lollipop = window.Lollipop = {};
     disableWindowResizeBehavior();
     enableScroll();
   }
-  Lollipop['close'] = close;
+  methods.close = close;
   
-  _freeze(Lollipop);
+  _freeze(methods);
+
+  // require.js compatibility
+  if (typeof define === 'function' && define.amd ) {
+    define('Lollipop', [], function() {
+      return methods;
+    });
+  } else {
+    window.Lollipop = methods;
+  }
 })();
