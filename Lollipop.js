@@ -383,9 +383,7 @@
 
   // require.js compatibility
   if (typeof define === 'function' && define.amd ) {
-    define('Lollipop', [], function() {
-      return methods;
-    });
+    define(function (){return methods;});
   } else {
     window.Lollipop = methods;
   }
