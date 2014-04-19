@@ -5,7 +5,7 @@
 * @license GPL <http://szanata.com/gpl.txt>
 * @author Stéfano Stypulkowski <http://szanata.me>
 * @hosted Github <http://github.com/madeinstefano/Lollipop>
-* @version 1.1.0
+* @version 1.1.1
 * @require jquery 1.8+
 * @compatible FF 3.5+
 * @compatible Google Chrome 3+
@@ -42,6 +42,14 @@
       Object.freeze(obj);
     }
   }
+
+
+  /**
+  * Return whether given object is function or not
+  */
+  function isF(o){
+    return typeof o === 'function';
+  }
   
   var   
     methods = {},
@@ -53,6 +61,7 @@
       maxHeight:400,
       height:null,
       animate:true,
+      animateOnClose:true,
       title:null,
       showHeader:true,
       showFooter:true,
@@ -200,7 +209,7 @@
   function setCloseOnESC(_options){
     $(window).on('keydown.lollipop', function (e){
       if (e.keyCode === 27){
-        if (typeof _options.onCancel === 'function'){
+        if (isF(_options.onCancel)){
           _options.onCancel();
         }
         Lollipop.close();
@@ -233,7 +242,7 @@
         setButton({
           title: _options.cancelButtonTitle, 
           click:  function (){
-            if (typeof _options.onCancel === 'function'){
+            if (isF(_options.onCancel)){
               _options.onCancel();
             }
             Lollipop.close();
@@ -331,15 +340,15 @@
     setCleaner();
     setFooter(openOptions);
     $popup.hide().appendTo($('body'));
-    if (typeof _options.onBeforeOpen === 'function'){
-      _options.onBeforeOpen.call($popup[0]);
+    if (isF(openOptions.onBeforeOpen)){
+      openOptions.onBeforeOpen.call($popup[0]);
     }
     if (openOptions.animate){
       $popup.css('visibility','hidden').show(0,function (){
         afterOpenAction();
         $popup.hide().css('visibility','visible').fadeIn(function (){
-          if (typeof _options.onOpen === 'function'){
-            _options.onOpen.call(this);
+          if (isF(openOptions.onOpen)){
+            openOptions.onOpen.call(this);
           }
         });
       });
@@ -347,8 +356,8 @@
     } else {
       $popup.show(0,function (){
         afterOpenAction();
-        if (typeof _options.onOpen === 'function'){
-          _options.onOpen.call(this);
+        if (isF(openOptions.onOpen)){
+          openOptions.onOpen.call(this);
         }
       });
     }
@@ -360,17 +369,17 @@
   * closes the popup
   */
   function close(noAnimate){
-    if (noAnimate){
+    if (noAnimate || !workingOptions.animateOnClose){
       $popup.find('#lollipop-popup-body').html('');
       $popup.detach();
-    }else{
+    } else {
       $popup.fadeOut(function (){
         $popup.find('#lollipop-popup-body').html('');
         $popup.detach();
       });
     }
     var closeCallback = $popup.data('__closeCallback');
-    if (typeof closeCallback === 'function'){
+    if (isF(closeCallback)){
       closeCallback.call($popup[0]);
     }
     disableCloseOnESC();

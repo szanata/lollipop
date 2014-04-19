@@ -5,6 +5,11 @@ A simple JS popup manager, but just *perfect*
 
 > Changelog
 
+- **1.1.1**
+  - added: "animateOnClose" config to set whether the popup must fadeOut on close or not. Default: true.
+  - fixed: some issues on "open" when no parameters was given.
+  - added: code improvements.
+
 - **1.1.0**
   - added: buttons now have target and href properties to make anchor links.
   - added: compatibility with require.js, as an AMD module.
@@ -74,6 +79,7 @@ A simple JS popup manager, but just *perfect*
   - maxHeight:<Number> - The minimum height (px) for the popup, like the CSS property. Default: 400.
   - height:<number> - The preferred width (px) for popup. Default: null.
   - animate:<boolean> - If popup must fade in when opening. Default: true.
+  - animateOnClose:<boolean> - If popup must fade out when closing. Default: true.
   - title:<string> - Default tile for popup. Default: null.
   - showHeader:<boolean> - If the header bar must be visible. Default: true.
   - showFooter:<boolean> - If the footer bar must be visible. Default: true.
