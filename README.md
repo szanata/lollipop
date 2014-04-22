@@ -5,6 +5,9 @@ A simple JS popup manager, but just *perfect*
 
 > Changelog
 
+- **1.1.2**
+  - fixed: some times after the popup opens, the blocker layer height is a little greater than the window height, even when the popup itself is smaller, thus the window's scrollbar appears.
+
 - **1.1.1**
   - added: "animateOnClose" config to set whether the popup must fadeOut on close or not. Default: true.
   - fixed: some issues on "open" when no parameters was given.

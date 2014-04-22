@@ -5,7 +5,7 @@
 * @license GPL <http://szanata.com/gpl.txt>
 * @author Stéfano Stypulkowski <http://szanata.me>
 * @hosted Github <http://github.com/madeinstefano/Lollipop>
-* @version 1.1.1
+* @version 1.1.2
 * @require jquery 1.8+
 * @compatible FF 3.5+
 * @compatible Google Chrome 3+
@@ -83,6 +83,7 @@
       top:'0px',
       left:'0px',
       right:'0px',
+      bottom:'0px',
       zIndex:9999
     }).append(
       $('<div id="lollipop-block-layer"></div>').css({ //blocker
@@ -305,6 +306,7 @@
     centralize();
     preventScroll();
     setWindowResizeBehavior();
+    $(window).trigger('resize.lollipop');
   }
   
   /**

@@ -5,6 +5,11 @@ A simple JS popup manager, but just *perfect*
 
 > Changelog
 
+- **1.1.1**
+  - added: "animateOnClose" config to set whether the popup must fadeOut on close or not. Default: true.
+  - fixed: some issues on "open" when no parameters was given.
+  - added: code improvements.
+
 - **1.1.0**
   - added: buttons now have target and href properties to make anchor links.
   - added: compatibility with require.js, as an AMD module.
