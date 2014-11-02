@@ -1,9 +1,19 @@
 Lollipop
 ========
 
-A simple JS popup manager, but just *perfect*
+A simple JS popup manager
 
 > Changelog
+
+- **1.2.0**
+  - added: full mobile support. On mobile or small display resolution, the popup width will be fixed to 90% of the screen.
+  - added: overflow as scroll for bigger content.
+  - added: the *minHeight*, *maxHeight* and *height* options now are specific for the content area, excluding the header and the footer.
+  - added: the *minHeight* options default value now is 0.
+  - added: the default values for the *width* and *height* options are "auto" now.
+  - fixed: when closing the popup with animation and rapidly opening it again, the popup could not appear.
+  - added: bower.js support.
+  - added: the main files now are lollipop.css and lollipop.js, without the capitalization.
 
 - **1.1.2**
   - fixed: some times after the popup opens, the blocker layer height is a little greater than the window height, even when the popup itself is smaller, thus the window's scrollbar appears.
@@ -18,22 +28,22 @@ A simple JS popup manager, but just *perfect*
   - added: compatibility with require.js, as an AMD module.
 
 - **1.0.5**
-  - added: "onClose" callback, called after popup closes
-  - added: "onBeforeClose" calback, called before popup closes
+  - added: "onClose" callback, called after popup closes.
+  - added: "onBeforeClose" calback, called before popup closes.
 
 - **1.0.4**
-  - explicit removing popup's content before closing the popup
-  - explicit removing popup's content before loading new content on popup
-  - using "append" to new content on popup
+  - fixed: explicit removing popup's content before closing the popup.
+  - fixed: explicit removing popup's content before loading new content on popup.
+  - added: now using "append" to new content on popup.
 
 - **1.0.3**
-  - replace "remove" to "detach" jQuery method when closing the popup
+  - fixed: replace "remove" to "detach" jQuery method when closing the popup.
 
 - **1.0.2**
-  - added "onOpen" option
+  - added:  "onOpen" option.
 
 - **1.0.1**
-  - stylizable block layer (for background color and opacity)
+  - added: stylizable block layer (for background color and opacity)
 
 - **1.0.0**
   - initial release, see features below
@@ -51,9 +61,9 @@ A simple JS popup manager, but just *perfect*
 
 > Installing
 
-- Download and import the Lollipop.js or the minified file to your project
+- Download and import the lollipop.js or the minified file to your project
 - You also need to use jQuery 1.8+ on your project
-- Download and import the Lollipop.css to your project. Here you can easily customize your popup.
+- Download and import the lollipop.css to your project. Here you can easily customize your popup.
 
 > API 
 *(4 methods)*
@@ -77,10 +87,10 @@ A simple JS popup manager, but just *perfect*
   
   - minWidth:<Number> - The minimum width (px) for the popup, like the CSS property. Default: 400.
   - maxWidth:<Number> - The maximum width (px) for the popup, like the CSS property. Default: 500.
-  - width:<Number> - The preferred width (px) for popup. Default: null.
-  - minHeight:<Number> - The minimum height (px) for the popup, like the CSS property. Default: 200.
-  - maxHeight:<Number> - The minimum height (px) for the popup, like the CSS property. Default: 400.
-  - height:<number> - The preferred width (px) for popup. Default: null.
+  - width:<Number> - The preferred width (px) for popup. Default: 'auto'.
+  - minHeight:<Number> - The minimum height (px) for the popup content (excluding header and footer), like the CSS property. Default: 0.
+  - maxHeight:<Number> - The minimum height (px) for the popup content (excluding header and footer), like the CSS property. Default: 400.
+  - height:<number> - The preferred width (px) for popup content (excluding header and footer). Default: 'auto'.
   - animate:<boolean> - If popup must fade in when opening. Default: true.
   - animateOnClose:<boolean> - If popup must fade out when closing. Default: true.
   - title:<string> - Default tile for popup. Default: null.

@@ -4,6 +4,11 @@
 #lollipop-block-layer{
   background-color:rgba(0,0,0,.7);
 }
+#lollipop-popup, #lollipop-popup  *{
+  -moz-box-sizing:border-box;
+  -webkit-box-sizing:border-box;
+  box-sizing:border-box;
+}
 #lollipop-popup{
   border:8px solid #666;
   border-radius:6px;
@@ -11,20 +16,31 @@
   color:#333;
   background-color:#fcfcfc;
 }
+@media 
+only screen and (max-device-width: 480px),
+only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (min-resolution: 300dpi) {
+  #lollipop-popup{
+    width:90%!important;
+    min-width:0!important;
+    max-width:9999px!important;;
+  }
+}
 #lollipop-popup-header{
   background-color:#f2f2f2;
-  padding:10px;
+  padding:12px;
   border-bottom:1px solid #ccc;
   text-shadow:0px 1px #fff;
 }
 #lollipop-popup-body{
-  padding:10px 10px 50px;
+  padding:12px;
+  overflow:auto;
 }
 #lollipop-popup-footer{
   text-align:center;
   border-top:1px solid #ccc;
   background-color:#f2f2f2;
-  padding:10px;
+  padding:12px;
 }
 #lollipop-popup-footer button,
 #lollipop-popup-footer .button{
@@ -39,17 +55,16 @@
   line-height:34px;
   background-color:#ddd;
   padding:0 15px;
-  margin:0 0 0 10px;
+  margin:0 6px 6px;
   color:#333;
   text-shadow:0px 1px #efefef;
   border-radius:4px;
   box-shadow:inset 0px 10px 10px #eee, inset 0px -10px 10px #ccc,0px 1px 2px #ccc;
   cursor:pointer;
-  
-  -moz-box-sizing:border-box;
-  -webkit-box-sizing:border-box;
-  box-sizing:border-box;
   vertical-align:top;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
 }
 #lollipop-popup-footer .button,
 #lollipop-popup-footer .button:active,
@@ -58,5 +73,3 @@
   text-decoration:none;
   display:inline-block;
 }
-#lollipop-popup-footer button:first-child,
-#lollipop-popup-footer .button:first-child{margin:0;}

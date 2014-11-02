@@ -2,8 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Lollipop</title>
+    <title>Lollipop simple tests</title>
     
     <link type="text/css" rel="stylesheet" href="Lollipop.css"/>
     
@@ -13,25 +14,52 @@
 	<body style="height:1900px">
     <script>
       $(function (){
+        Lollipop.config({
+          title: 'Default title',
+          content:'Default content'
+        });
+      
         Lollipop.open({
-          showHeader:true,
-          title:'My title',
-          content:'Hellow',
-          animate:false,
           buttons:[
             {
-              title:'Ok',
+              title:'Overflow',
               click:function (){
                 Lollipop.close();
+                Lollipop.open({
+                  title:'Testing overflow',
+                  content:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                  buttons:[
+                    {
+                      title:'Close/open without animation',
+                      click:function (){
+                        Lollipop.close(true);
+                        Lollipop.open({
+                          animate:false,
+                          content:"No cancel button",
+                          showCancelButton:false,
+                          buttons:[
+                            {
+                              title:'Open without footer & header',
+                              click:function (){
+                                Lollipop.open({
+                                  showFooter:false,
+                                  showHeader:false,
+                                  content:'DEAD END. You can only close me programatically.'
+                                 });
+                              }
+                            }
+                          ]
+                        });
+                      }
+                    }
+                  ]
+                });
               }
             },
             {
-              title:'link',                
+              title:'This is a anchor with external href',
               href:'http://github.com',
-              target:'_blank',
-              click:function (){
-                console.log('click event');
-              }
+              target:'_blank'
             }
           ],
           onOpen:null

@@ -56,10 +56,10 @@
     defaults = {
       minWidth:400,
       maxWidth:500,
-      width:null,
-      minHeight:200,
+      width:'auto',
+      minHeight:0,
       maxHeight:400,
-      height:null,
+      height:'auto',
       animate:true,
       animateOnClose:true,
       title:null,
@@ -80,36 +80,37 @@
     */
     $popup = $('<div></div>').css({ // wrapper it all
       position:'absolute',
-      top:'0px',
-      left:'0px',
-      right:'0px',
-      bottom:'0px',
+      top:'0',
+      left:'0',
+      right:'0',
+      bottom:'0',
       zIndex:9999
     }).append(
       $('<div id="lollipop-block-layer"></div>').css({ //blocker
         position:'absolute',
-        top:'0px',
-        bottom:'0px',
-        left:'0px',
-        right:'0px'
+        top:'0',
+        bottom:'0',
+        left:'0',
+        right:'0'
       }),
       $('<div id="lollipop-popup"></div>').css({ //popup box itself
         maxWidth:defaults.maxWidth,
-        maxHeight:defaults.maxHeight,
         minWidth:defaults.minWidth,
-        minHeight:defaults.minHeight,
         position:'absolute'
       }).append(
         $('<div id="lollipop-popup-header"></div>').css({ //header
           textOverflow:'ellipsis',
           overflow:'hidden'
         }),
-        $('<div id="lollipop-popup-body"></div>'), //content body
+        $('<div id="lollipop-popup-body"></div>').css({ //content body
+          maxHeight:defaults.maxHeight,
+          minHeight:defaults.minHeight,
+        }),
         $('<div id="lollipop-popup-footer"></div>').css({ //footer
           position:'absolute',
-          bottom:'0px',
-          left:'0px',
-          right:'0px'
+          bottom:'0',
+          left:'0',
+          right:'0'
         })
       )
     );
@@ -144,9 +145,9 @@
   */
   function centralize(){
     var
-      left = ($(window).width() - $('#lollipop-popup').outerWidth()) / 2,
-      top = ($(window).height() - $('#lollipop-popup').outerHeight()) / 2;
-    $('#lollipop-popup').css({
+      left = ($(window).width() - $popup.find('#lollipop-popup').outerWidth()) / 2,
+      top = ($(window).height() - $popup.find('#lollipop-popup').outerHeight()) / 2;
+    $popup.find('#lollipop-popup').css({
       left:(left < 0) ? 0 : left,
       top:(top < 0) ? 0 : top
     });
@@ -164,6 +165,7 @@
   */
   function setWindowResizeBehavior(){
     $(window).on('resize.lollipop', function (){
+      setBodyFooterDistance();
       setBlockerSize();
       centralize();
     });
@@ -261,10 +263,12 @@
   function setSizes(_options){
     $popup.find('#lollipop-popup').css({
       maxWidth:_options.maxWidth || 'auto',
-      maxHeight:_options.maxHeight || 'auto',
       minWidth:_options.minWidth || 'auto',
-      minHeight:_options.minHeight || 'auto',
       width:_options.width || 'auto',
+    });
+    $popup.find('#lollipop-popup-body').css({
+      maxHeight:_options.maxHeight || 'auto',
+      minHeight:_options.minHeight || 'auto',
       height:_options.height || 'auto'
     });
   }
@@ -297,7 +301,7 @@
   * This is important since the foooter has absolute position
   */
   function setBodyFooterDistance(){
-    $popup.find('#lollipop-popup').css('padding-bottom',$popup.find('#lollipop-popup-footer:visible').size() ? $popup.find('#lollipop-popup-footer').outerHeight(true) : 0);
+    $popup.find('#lollipop-popup').css('padding-bottom', $popup.find('#lollipop-popup-footer:visible').size() ? $popup.find('#lollipop-popup-footer').outerHeight(true) : 0);
   }
   
   function afterOpenAction(){
@@ -346,7 +350,8 @@
       openOptions.onBeforeOpen.call($popup[0]);
     }
     if (openOptions.animate){
-      $popup.css('visibility','hidden').show(0,function (){
+      $popup.css('visibility','hidden').show(0, function (){
+        console.log($popup.find('#lollipop-popup').height(), $popup.find('#lollipop-popup').outerHeight());
         afterOpenAction();
         $popup.hide().css('visibility','visible').fadeIn(function (){
           if (isF(openOptions.onOpen)){
@@ -356,7 +361,7 @@
       });
       
     } else {
-      $popup.show(0,function (){
+      $popup.show(0, function (){
         afterOpenAction();
         if (isF(openOptions.onOpen)){
           openOptions.onOpen.call(this);
@@ -371,13 +376,14 @@
   * closes the popup
   */
   function close(noAnimate){
+    var $p = $popup;
+    $popup = $popup.clone(true);
+    
     if (noAnimate || !workingOptions.animateOnClose){
-      $popup.find('#lollipop-popup-body').html('');
-      $popup.detach();
+      $p.remove();
     } else {
-      $popup.fadeOut(function (){
-        $popup.find('#lollipop-popup-body').html('');
-        $popup.detach();
+      $p.fadeOut(function (){
+        $p.remove();
       });
     }
     var closeCallback = $popup.data('__closeCallback');
