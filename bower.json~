@@ -1,5 +1,5 @@
 {
-  "name": "lollipop",
+  "name": "Lollipop",
   "version": "1.2.0",
   "main": "lollipop.js",
   "description": "Simple js popup manager",
