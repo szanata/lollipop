@@ -5,6 +5,9 @@ A simple JS popup manager
 
 > Changelog
 
+- **1.2.1**
+  - fixed: some minor CSS issues, the header section don't had any font-size defined.
+
 - **1.2.0**
   - added: full mobile support. On mobile or small display resolution, the popup width will be fixed to 90% of the screen.
   - added: overflow as scroll for bigger content.
