@@ -6,12 +6,15 @@
 
     <title>Lollipop simple tests</title>
     
-    <link type="text/css" rel="stylesheet" href="Lollipop.css"/>
+    <link type="text/css" rel="stylesheet" href="lollipop.css"/>
     
     <script src="jquery-2.0.3.min.js"></script>
-    <script src="Lollipop.js"></script>
+    <script src="lollipop.js"></script>
 	</head>
 	<body style="height:1900px">
+
+    <input type="text" autofocus="autofocus" />
+
     <script>
       $(function (){
         Lollipop.config({
@@ -20,6 +23,7 @@
         });
       
         Lollipop.open({
+          content:'<h3>Test</h3><input type="text" />',
           buttons:[
             {
               title:'Overflow',

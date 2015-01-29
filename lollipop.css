@@ -74,3 +74,7 @@ only screen and (min-resolution: 300dpi) {
   text-decoration:none;
   display:inline-block;
 }
+#lollipop-popup-footer button:focus,
+#lollipop-popup-footer .button:focus{
+  border:1px solid #222;
+}

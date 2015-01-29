@@ -5,6 +5,12 @@ A simple JS popup manager
 
 > Changelog
 
+- **1.3.0**
+  - added: When the popup opens, all input event in the page below are prevented (keypress, keyup, keydown, input, paste).
+  - added: When the popup opens, the first input or button found in it will receive focus.
+  - added: Style for focusing buttons.
+  - fixed: import in the example file.
+
 - **1.2.1**
   - fixed: some minor CSS issues, the header section don't had any font-size defined.
 
@@ -61,6 +67,8 @@ A simple JS popup manager
 - Keyborad ESC to close popup
 - 3 areas: header (for title), body (for content) and footer (for buttons).
 - Easy to styling
+- Mobile friendly
+- Blocks inputs in the page below
 
 > Installing
 

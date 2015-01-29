@@ -303,8 +303,25 @@
   function setBodyFooterDistance(){
     $popup.find('#lollipop-popup').css('padding-bottom', $popup.find('#lollipop-popup-footer:visible').size() ? $popup.find('#lollipop-popup-footer').outerHeight(true) : 0);
   }
+
+  function blockInput(){
+    $(document).on('keypress.lollipop-block keydown.lollipop-block keyup.lollipop-block paste.lollipop-block input.lollipop-block', function (e){
+      if ($popup.find($(e.target)).size() === 0){
+        e.preventDefault();
+      }
+    });
+  }
+
+  function unblockInput(){
+    $(document).off('keypress.lollipop-block keydown.lollipop-block keyup.lollipop-block paste.lollipop-block input.lollipop-block');
+  }
+
+  function setFocus(){
+    $popup.find('input:visible, button, a.button').first().trigger('focus');
+  }
   
   function afterOpenAction(){
+    blockInput();
     setBodyFooterDistance();
     setBlockerSize();
     centralize();
@@ -351,9 +368,9 @@
     }
     if (openOptions.animate){
       $popup.css('visibility','hidden').show(0, function (){
-        console.log($popup.find('#lollipop-popup').height(), $popup.find('#lollipop-popup').outerHeight());
         afterOpenAction();
         $popup.hide().css('visibility','visible').fadeIn(function (){
+          setFocus();
           if (isF(openOptions.onOpen)){
             openOptions.onOpen.call(this);
           }
@@ -363,6 +380,7 @@
     } else {
       $popup.show(0, function (){
         afterOpenAction();
+        setFocus();
         if (isF(openOptions.onOpen)){
           openOptions.onOpen.call(this);
         }
@@ -393,6 +411,7 @@
     disableCloseOnESC();
     disableWindowResizeBehavior();
     enableScroll();
+    unblockInput();
   }
   methods.close = close;
   
