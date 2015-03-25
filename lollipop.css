@@ -67,6 +67,10 @@ only screen and (min-resolution: 300dpi) {
   text-overflow:ellipsis;
   white-space:nowrap;
 }
+/* removes dashed outline from buttons*/
+#lollipop-popup-footer button::-moz-focus-inner {border: 0;}
+#lollipop-popup-footer .button::-moz-focus-inner {border: 0;}
+
 #lollipop-popup-footer .button,
 #lollipop-popup-footer .button:active,
 #lollipop-popup-footer .button:visited,

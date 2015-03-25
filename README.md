@@ -5,6 +5,10 @@ A simple JS popup manager
 
 > Changelog
 
+- **1.3.1**
+  - added: When the popup closes, waits animation to finish before triggering the callback 'onClose'.
+  - added: Style to prevent firefox dashed focus border around buttons.
+
 - **1.3.0**
   - added: When the popup opens, all input event in the page below are prevented (keypress, keyup, keydown, input, paste).
   - added: When the popup opens, the first input or button found in it will receive focus.

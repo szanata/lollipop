@@ -5,7 +5,7 @@
 * @license GPL <http://szanata.com/gpl.txt>
 * @author Stéfano Stypulkowski <http://szanata.me>
 * @hosted Github <http://github.com/madeinstefano/Lollipop>
-* @version 1.3.0
+* @version 1.3.1
 * @require jquery 1.8+
 * @compatible FF 3.5+
 * @compatible Google Chrome 3+
@@ -329,6 +329,17 @@
     setWindowResizeBehavior();
     $(window).trigger('resize.lollipop');
   }
+
+  function afterCloseAction(){
+    var closeCallback = $popup.data('__closeCallback');
+    if (isF(closeCallback)){
+      closeCallback.call($popup[0]);
+    }
+    disableCloseOnESC();
+    disableWindowResizeBehavior();
+    enableScroll();
+    unblockInput();
+  }
   
   /**
   * @public
@@ -399,19 +410,13 @@
     
     if (noAnimate || !workingOptions.animateOnClose){
       $p.remove();
+      afterCloseAction();
     } else {
       $p.fadeOut(function (){
         $p.remove();
+        afterCloseAction();
       });
     }
-    var closeCallback = $popup.data('__closeCallback');
-    if (isF(closeCallback)){
-      closeCallback.call($popup[0]);
-    }
-    disableCloseOnESC();
-    disableWindowResizeBehavior();
-    enableScroll();
-    unblockInput();
   }
   methods.close = close;
   
