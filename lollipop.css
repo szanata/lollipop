@@ -4,7 +4,9 @@
 #lollipop-block-layer{
   background-color:rgba(0,0,0,.7);
 }
-#lollipop-popup, #lollipop-popup  *{
+#lollipop-popup, #lollipop-popup  *,
+#lollipop-popup  *::after,
+#lollipop-popup  *::before{
   -moz-box-sizing:border-box;
   -webkit-box-sizing:border-box;
   box-sizing:border-box;
@@ -36,7 +38,15 @@ only screen and (min-resolution: 300dpi) {
 #lollipop-popup-body{
   padding:12px;
   overflow:auto;
+  position: relative;
+
 }
+/* sel clear */
+/*#lollipop-popup-body:after {
+  content: "";
+  display: table;
+  clear: both;
+}*/
 #lollipop-popup-footer{
   text-align:center;
   border-top:1px solid #ccc;
@@ -81,4 +91,41 @@ only screen and (min-resolution: 300dpi) {
 #lollipop-popup-footer button:focus,
 #lollipop-popup-footer .button:focus{
   border:1px solid #222;
+}
+
+/* for animations */
+@keyframes rot {
+  0% {
+    -moz-transform: rotate(0deg);
+    -webki-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -moz-transform: rotate(1080deg);
+    -webkit-transform: rotate(1080deg);
+    transform: rotate(1080deg);
+  }
+}
+
+.lollipop-loading #lollipop-popup-body::after {
+  content:'';
+  display: block;
+  font-size: 12px;
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  background-color: transparent;
+  top: calc(50% - 40px);
+  left: calc(50% - 40px);
+  border-width: 24px;
+  border-color: #ccc #333 #333;
+  border-style: solid;
+  border-radius: 50%;
+  -moz-animation: rot 2s ease-in-out infinite;
+  -webkit-animation: rot 2s ease-in-out infinite;
+  animation: rot 2s ease-in-out infinite;
+}
+#lollipop-popup.lollipop-loading {
+  background-color: transparent;
+  border:0;
 }

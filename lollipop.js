@@ -5,7 +5,7 @@
 * @license GPL <http://szanata.com/gpl.txt>
 * @author Stéfano Stypulkowski <http://szanata.me>
 * @hosted Github <http://github.com/madeinstefano/Lollipop>
-* @version 1.3.1
+* @version 1.4
 * @require jquery 1.8+
 * @compatible FF 3.5+
 * @compatible Google Chrome 3+
@@ -13,7 +13,7 @@
 * @compatible Opera 10+
 * @compatible Safari 5+
 */
-(function (){
+(function () {
   'use strict';
   
   /**
@@ -23,10 +23,10 @@
   * @param obj <Object>
   * @return cloned object
   */
-  function cloneObj(obj){
+  function cloneObj(obj) {
     var cloned  = {};
-    for (var p in obj){
-      if (obj.hasOwnProperty(p)){
+    for (var p in obj) {
+      if (obj.hasOwnProperty(p)) {
         cloned[p] = obj[p];
       }
     }
@@ -37,8 +37,8 @@
   * Freeze given object
   * Used to prevent old browser to crash
   */
-  function _freeze(obj){
-    if (Object.freeze){
+  function _freeze(obj) {
+    if (Object.freeze) {
       Object.freeze(obj);
     }
   }
@@ -47,7 +47,7 @@
   /**
   * Return whether given object is function or not
   */
-  function isF(o){
+  function isF(o) {
     return typeof o === 'function';
   }
   
@@ -120,20 +120,20 @@
   * prevents window scrolling in most cases, 
   * but allow scroll to fetch popup bigger than screen
   */
-  function preventScroll(){
-    $(window).add('html, body').scrollTop(0).scrollLeft(0).on('scroll.lollipop', function (){
+  function preventScroll() {
+    $(window).add('html, body').scrollTop(0).scrollLeft(0).on('scroll.lollipop', function () {
       var
         popW = $popup.find('#lollipop-popup').outerWidth(true),
         popH = $popup.find('#lollipop-popup').outerHeight(true);
       
-      if (popW < $(window).width()){
+      if (popW < $(window).width()) {
         $(window).scrollLeft(0);
-      }else if (popW < $(window).width() + $(window).scrollLeft()){
+      } else if (popW < $(window).width() + $(window).scrollLeft()) {
         $(window).scrollLeft(popW - $(window).width());
       }
-      if (popH < $(window).height()){
+      if (popH < $(window).height()) {
         $(window).scrollTop(0);
-      }else if (popH < $(window).height() + $(window).scrollTop()){
+      } else if (popH < $(window).height() + $(window).scrollTop()) {
         $(window).scrollTop(popH - $(window).height());
       }
     });
@@ -143,7 +143,7 @@
   * centralizes the popup relative to window
   * if popup is bigger than x or y, it goes to position zero on that axis
   */
-  function centralize(){
+  function centralize() {
     var
       left = ($(window).width() - $popup.find('#lollipop-popup').outerWidth()) / 2,
       top = ($(window).height() - $popup.find('#lollipop-popup').outerHeight()) / 2;
@@ -156,15 +156,15 @@
   /**
   * enable window scroll
   */
-  function enableScroll(){
+  function enableScroll() {
     $(window).add('html, body').off('scroll.lollipop');
   }
   
   /**
   * recentralizes popup and resizes blocker size
   */
-  function setWindowResizeBehavior(){
-    $(window).on('resize.lollipop', function (){
+  function setWindowResizeBehavior() {
+    $(window).on('resize.lollipop', function () {
       setBodyFooterDistance();
       setBlockerSize();
       centralize();
@@ -174,7 +174,7 @@
   /**
   * disable the behavior above
   */
-  function disableWindowResizeBehavior(){
+  function disableWindowResizeBehavior() {
     $(window).off('resize.lollipop');
   }
   
@@ -183,7 +183,7 @@
   * whether it is bigger than window, otherwise uses window height.
   * Do the same for width.
   */
-  function setBlockerSize(){
+  function setBlockerSize() {
     $popup
       .height(0).width(0) //reset
       .height(($(document).height() < $(window).height()) ? $(window).height() : $(document).height())
@@ -193,7 +193,7 @@
   /**
   * creates and appends some button to footer*
   */
-  function setButton(options){
+  function setButton(options) {
     $popup.find('#lollipop-popup-footer').append(
       options.href 
         ? $('<a class="button"></a>').text(options.title)
@@ -209,10 +209,10 @@
   /**
   * binds the close on ESC beahvior
   */
-  function setCloseOnESC(_options){
-    $(window).on('keydown.lollipop', function (e){
-      if (e.keyCode === 27){
-        if (isF(_options.onCancel)){
+  function setCloseOnESC(_options) {
+    $(window).on('keydown.lollipop', function (e) {
+      if (e.keyCode === 27) {
+        if (isF(_options.onCancel)) {
           _options.onCancel();
         }
         Lollipop.close();
@@ -223,7 +223,7 @@
   /**
   * removes close on ESC behavior
   */
-  function disableCloseOnESC(){
+  function disableCloseOnESC() {
     $(window).off('keydown.lollipop');
   }
   
@@ -231,21 +231,21 @@
   * Hides or shows footer
   * Also append all his buttons
   */
-  function setFooter(_options){
-    if (!_options.showFooter || ((!_options.buttons || _options.buttons.length === 0) && !_options.showCancelButton)){
+  function setFooter(_options) {
+    if (!_options.showFooter || ((!_options.buttons || _options.buttons.length === 0) && !_options.showCancelButton)) {
       $popup.find('#lollipop-popup-footer').empty().hide();
     }else{
       $popup.find('#lollipop-popup-footer').empty().show();
-      if (_options.buttons){
-        for (var i = 0, li = _options.buttons.length; i < li; i++){
+      if (_options.buttons) {
+        for (var i = 0, li = _options.buttons.length; i < li; i++) {
           setButton(_options.buttons[i]);
         }
       }
-      if (_options.showCancelButton){
+      if (_options.showCancelButton) {
         setButton({
           title: _options.cancelButtonTitle, 
-          click:  function (){
-            if (isF(_options.onCancel)){
+          click:  function () {
+            if (isF(_options.onCancel)) {
               _options.onCancel();
             }
             Lollipop.close();
@@ -260,7 +260,7 @@
   * set all sizes for the popup
   * to work wiht minHeight and minWidth, it must omit height and width
   */
-  function setSizes(_options){
+  function setSizes(_options) {
     $popup.find('#lollipop-popup').css({
       maxWidth:_options.maxWidth || 'auto',
       minWidth:_options.minWidth || 'auto',
@@ -276,8 +276,8 @@
   /**
   * Hides or shows header and its content
   */
-  function setHeader(_options){
-    if (_options.showHeader && _options.title){
+  function setHeader(_options) {
+    if (_options.showHeader && _options.title) {
       $popup.find('#lollipop-popup-header').show().html(_options.title);
     }else{
       $popup.find('#lollipop-popup-header').hide();
@@ -285,42 +285,30 @@
   }
   
   /**
-  * adds the cleaner div to prevent floating element to be out of bounds
-  */
-  function setCleaner(){
-    var cleaner = $('<div></div>').css({
-      clear:'both',
-      width:0,
-      height:0
-    });
-    $popup.find('#lollipop-popup-body').append(cleaner);
-  }
-  
-  /**
   * Add a pad equivalent to footers height to the popup box,
   * This is important since the foooter has absolute position
   */
-  function setBodyFooterDistance(){
+  function setBodyFooterDistance() {
     $popup.find('#lollipop-popup').css('padding-bottom', $popup.find('#lollipop-popup-footer:visible').size() ? $popup.find('#lollipop-popup-footer').outerHeight(true) : 0);
   }
 
-  function blockInput(){
-    $(document).on('keypress.lollipop-block keydown.lollipop-block keyup.lollipop-block paste.lollipop-block input.lollipop-block', function (e){
-      if ($popup.find($(e.target)).size() === 0){
+  function blockInput() {
+    $(document).on('keypress.lollipop-block keydown.lollipop-block keyup.lollipop-block paste.lollipop-block input.lollipop-block', function (e) {
+      if ($popup.find($(e.target)).size() === 0) {
         e.preventDefault();
       }
     });
   }
 
-  function unblockInput(){
+  function unblockInput() {
     $(document).off('keypress.lollipop-block keydown.lollipop-block keyup.lollipop-block paste.lollipop-block input.lollipop-block');
   }
 
-  function setFocus(){
+  function setFocus() {
     $popup.find('input:visible, button, a.button').first().trigger('focus');
   }
   
-  function afterOpenAction(){
+  function afterOpenAction() {
     blockInput();
     setBodyFooterDistance();
     setBlockerSize();
@@ -330,9 +318,9 @@
     $(window).trigger('resize.lollipop');
   }
 
-  function afterCloseAction(){
+  function afterCloseAction() {
     var closeCallback = $popup.data('__closeCallback');
-    if (isF(closeCallback)){
+    if (isF(closeCallback)) {
       closeCallback.call($popup[0]);
     }
     disableCloseOnESC();
@@ -345,16 +333,16 @@
   * @public
   * retuns a non extensible and non changeable, frozen clone of defaults
   */
-  function seeDefaults(){
+  function seeDefaults() {
     return cloneObj(defaults);
   }
   methods.seeDefaults = seeDefaults;
   
   /**
   * @public
-  * overwrite the owrking options with presetted options by user
+  * overwrite the working options with presetted options by user
   */
-  function config(_options){
+  function config(_options) {
     $.extend(workingOptions,defaults,_options);
   }
   methods.config = config;
@@ -363,7 +351,7 @@
   * @public
   * opens the popup, with given options, that overwrite global options
   */
-  function open(_options){
+  function open(_options) {
     var openOptions = {};
     $.extend(openOptions, workingOptions,_options);
     setHeader(openOptions);
@@ -371,28 +359,27 @@
     $popup.find('#lollipop-popup-body').append(openOptions.content);
     $popup.data('__closeCallback',openOptions.onClose);
     setSizes(openOptions);
-    setCleaner();
     setFooter(openOptions);
     $popup.hide().appendTo($('body'));
-    if (isF(openOptions.onBeforeOpen)){
+    if (isF(openOptions.onBeforeOpen)) {
       openOptions.onBeforeOpen.call($popup[0]);
     }
-    if (openOptions.animate){
-      $popup.css('visibility','hidden').show(0, function (){
+    if (openOptions.animate) {
+      $popup.css('visibility','hidden').show(0, function () {
         afterOpenAction();
-        $popup.hide().css('visibility','visible').fadeIn(function (){
+        $popup.hide().css('visibility','visible').fadeIn(function () {
           setFocus();
-          if (isF(openOptions.onOpen)){
+          if (isF(openOptions.onOpen)) {
             openOptions.onOpen.call(this);
           }
         });
       });
       
     } else {
-      $popup.show(0, function (){
+      $popup.show(0, function () {
         afterOpenAction();
         setFocus();
-        if (isF(openOptions.onOpen)){
+        if (isF(openOptions.onOpen)) {
           openOptions.onOpen.call(this);
         }
       });
@@ -404,27 +391,50 @@
   * @public
   * closes the popup
   */
-  function close(noAnimate){
+  function close(noAnimate) {
     var $p = $popup;
     $popup = $popup.clone(true);
     
-    if (noAnimate || !workingOptions.animateOnClose){
+    if (noAnimate || !workingOptions.animateOnClose) {
       $p.remove();
       afterCloseAction();
     } else {
-      $p.fadeOut(function (){
+      $p.fadeOut(function () {
         $p.remove();
         afterCloseAction();
       });
     }
   }
   methods.close = close;
+
+  /**
+  * @public
+  * opens a modal loading dialog
+  */
+  function openLoading() {
+    methods.open({
+      showHeader: false,
+      showFooter: false,
+      animateOnClose: false,
+      animate: false,
+      height: 300,
+      width: 300,
+      content: '',
+      onOpen: function () {
+        $('#lollipop-popup').addClass('lollipop-loading');
+      },
+      onClose: function () {
+        $('#lollipop-popup').removeClass('lollipop-loading');
+      }
+    });
+  }
+  methods.openLoading = openLoading;
   
   _freeze(methods);
 
   // require.js compatibility
   if (typeof define === 'function' && define.amd ) {
-    define(function (){return methods;});
+    define(function () {return methods;});
   } else {
     window.Lollipop = methods;
   }

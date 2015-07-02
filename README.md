@@ -5,6 +5,13 @@ A simple JS popup manager
 
 > Changelog
 
+- **1.4.0**
+  - added: New load spinner feature:
+      By calling *openLoading()*, a invisible, modal, unclosable popup with a spinning wheel will be opened. 
+      It can be closed by calling *close()* as any popup. It will prevent keyboard entries or any user action until being closed.
+      This wheel is 100% css, and should work on any modern browser, thus avoiding the need for a .gif or another lib to generate spinners.
+  - removed: redundant code.
+
 - **1.3.1**
   - added: When the popup closes, waits animation to finish before triggering the callback 'onClose'.
   - added: Style to prevent firefox dashed focus border around buttons.
@@ -53,7 +60,7 @@ A simple JS popup manager
   - fixed: replace "remove" to "detach" jQuery method when closing the popup.
 
 - **1.0.2**
-  - added:  "onOpen" option.
+  - added: "onOpen" option.
 
 - **1.0.1**
   - added: stylizable block layer (for background color and opacity)
