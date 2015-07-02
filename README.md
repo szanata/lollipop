@@ -7,9 +7,13 @@ A simple JS popup manager
 
 - **1.4.0**
   - added: New load spinner feature:
+
       By calling *openLoading()*, a invisible, modal, unclosable popup with a spinning wheel will be opened. 
+
       It can be closed by calling *close()* as any popup. It will prevent keyboard entries or any user action until being closed.
+
       This wheel is 100% css, and should work on any modern browser, thus avoiding the need for a .gif or another lib to generate spinners.
+      
   - removed: redundant code.
 
 - **1.3.1**
@@ -79,7 +83,7 @@ A simple JS popup manager
 - 3 areas: header (for title), body (for content) and footer (for buttons).
 - Easy to styling
 - Mobile friendly
-- Blocks inputs in the page below
+- Blocks keyboard or any kind of inputs behind the popup
 
 > Installing
 
@@ -88,7 +92,7 @@ A simple JS popup manager
 - Download and import the lollipop.css to your project. Here you can easily customize your popup.
 
 > API 
-*(4 methods)*
+*(5 methods)*
 
 - Lollipop.open([options<Object>])
 
@@ -98,6 +102,10 @@ A simple JS popup manager
 - Lollipop.close([noAnimation<boolean>])
 
   Close the opened popup. If you pass 'true', it closes suddenly, without the default fade out animation.
+
+- Lollipop.openLoading() **NEW**
+
+  Open a modal, unclosable and invisible popup with a spinning wheel. Can be closed by calling *close()* method.
 
 - Lollipop.seeDefaults()
 
