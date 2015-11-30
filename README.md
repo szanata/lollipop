@@ -5,6 +5,9 @@ A simple JS popup manager
 
 > Changelog
 
+- **1.4.1**
+  - added: Now every button have the CSS class 'button'
+  
 - **1.4.0**
   - added: New load spinner feature:
 
