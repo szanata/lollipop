@@ -202,7 +202,7 @@
             'target': options.target ? options.target : '_blank'
           })
           .on('click', options.click)
-        : $('<button></button>').text(options.title).on('click', options.click)
+        : $('<button class="button"></button>').text(options.title).on('click', options.click)
     );
   }
   
@@ -305,7 +305,7 @@
   }
 
   function setFocus() {
-    $popup.find('input:visible, button, a.button').first().trigger('focus');
+    $popup.find('input:visible, .button').first().trigger('focus');
   }
   
   function afterOpenAction() {
