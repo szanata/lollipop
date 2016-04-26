@@ -1,6 +1,6 @@
 {
   "name": "lollipop",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "main": "lollipop.js",
   "description": "Simpliest js popup generator!",
   "ignore": [
