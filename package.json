@@ -1,0 +1,16 @@
+{
+  "name": "lollipop.js",
+  "version": "1.4.3",
+  "description": "Simple js model window manager",
+  "main": "lollipop.js",
+  "dependencies": {
+    "jquery": "2.2.4"
+  },
+  "bugs": "https://github.com/madeinstefano/lollipop/issues",
+  "author": {
+    "name" : "Stéfano Zanata",
+    "url" : "http://szanata.com"
+  },
+  "license" : "GPL-3.0",
+  "homepage": "https://github.com/madeinstefano/lollipop"
+}

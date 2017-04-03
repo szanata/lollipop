@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Lollipop simple tests</title>
-    
+
     <link type="text/css" rel="stylesheet" href="lollipop.css"/>
-    
-    <script src="jquery-2.0.3.min.js"></script>
+
+    <script src="node_modules/jquery/dist/jquery.js"></script>
     <script src="lollipop.js"></script>
 	</head>
 	<body style="height:1900px">
@@ -21,11 +21,11 @@
           title: 'Default title',
           content:'Default content'
         });
-      
+
         Lollipop.open({
           content: "<div style='float:left;width:50%;'>" +
-                "<h3>This floats left</h3>" + 
-                '<p>Input</p>' + 
+                "<h3>This floats left</h3>" +
+                '<p>Input</p>' +
                 '<input type="text" style="width:50%" />' +
                 '<p>Select</p>' +
                 '<select>' +
@@ -34,7 +34,7 @@
                 '</select>' +
               '</div>' +
               '<div style="float:right;width:50%;">' +
-                "<h3>This floats right</h3>" + 
+                "<h3>This floats right</h3>" +
                 '<p>Anothe input</p>' +
                 '<input type="text" style="width:50%" />' +
               '</div>',
