@@ -5,6 +5,9 @@ A simple JS popup manager
 
 > Changelog
 
+- **1.4.2**
+  - fixed: Loading wheel was still visible after a rapid change from Lollipop.openLoading to Lollipop.open content
+
 - **1.4.1**
   - added: Now every button have the CSS class 'button'
   
