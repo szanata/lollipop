@@ -1,10 +1,10 @@
 {
   "name": "lollipop.js",
-  "version": "1.4.3",
+  "version": "1.4.4",
   "description": "Simple js model window manager",
   "main": "lollipop.js",
   "dependencies": {
-    "jquery": "2.2.4"
+    "jquery": "~>3.0.0"
   },
   "bugs": "https://github.com/madeinstefano/lollipop/issues",
   "author": {

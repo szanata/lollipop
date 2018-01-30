@@ -77,9 +77,12 @@ Import jQuery too.
 
 ## Changelog
 
+- **1.4.4**
+  - Updated jquery version to 3
+  - Removed bower file
+
 - **1.4.3**
   - Project refactor
-
 
 - **1.4.2**
   - fixed: Loading wheel was still visible after a rapid change from Lollipop.openLoading to Lollipop.open content
